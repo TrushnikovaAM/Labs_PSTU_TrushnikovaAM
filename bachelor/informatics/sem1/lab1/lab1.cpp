@@ -15,12 +15,15 @@ int main() {
     float ab3_f   = 4 * a_f * pow(b_f, 3);       // 4ab^3
     float b4_f    = pow(b_f, 4);                 // b^4
 
-    float numerator_f   = pow(a_f - b_f, 4) - (a4_f - a3b_f + a2b2_f);
-    float denominator_f = b4_f - ab3_f;
-    float result_f      = numerator_f / denominator_f;
+    float u_f   = pow(a_f - b_f, 4) - (a4_f - a3b_f + a2b2_f);
+    float d_f = b4_f - ab3_f;
+    float res_f      = u_f / d_f;
+
+    cout << "Числитель float:    " << u_f << endl;
+    cout << "Знаменатель float: " << d_f << endl;
 
     cout << fixed << setprecision(10);
-    cout << "float:  " << result_f << endl;
+    cout << "float:  " << res_f << endl;
 
     double a_d = 100.0, b_d = 0.001;
 
@@ -30,11 +33,14 @@ int main() {
     double ab3_d   = 4 * a_d * pow(b_d, 3);
     double b4_d    = pow(b_d, 4);
 
-    double numerator_d   = pow(a_d - b_d, 4) - (a4_d - a3b_d + a2b2_d);
-    double denominator_d = b4_d - ab3_d;
-    double result_d      = numerator_d / denominator_d;
+    double u_d   = pow(a_d - b_d, 4) - (a4_d - a3b_d + a2b2_d);
+    double d_d = b4_d - ab3_d;
+    double res_d      = u_d / d_d;
 
-    cout << "double: " << result_d << endl;
+    cout << "Числитель double:    " << u_d << endl;
+    cout << "Знаменатель double:  " << d_d << endl;
+
+    cout << "double: " << res_d << endl;
     cout << "Как мы видим, результаты сильно отличаются из-за разной точности хранения вещественных чисел" << endl;
     cout << "Задание 2:" << endl;
 
@@ -60,3 +66,9 @@ int main() {
 
     return 0;
 }
+/* Математически числитель в первом задании должен быть (a^4 - 4a^3b + 6a^2b^2 - 4ab^3 + b^4) - (a^4 - 4a^3b + 6a^2b^2) = b^4 - 4ab^3
+=> он должен быть равен знаменателю 
+=> результат математически должен быть равен 1
+Но из-за того, что float хранит примертно 7 значащих цифр,
+а double хранит около 15-16 значащих цифр, значения могут сильно измениться
+например результат от double почти равен 1, в то время как результат от float далёк от 1 потому что значительно потерялась точность */
